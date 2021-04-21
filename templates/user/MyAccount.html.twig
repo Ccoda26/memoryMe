@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>C'est mon compte</h1>
+
+    <span> {{ app.user.name | capitalize }} {{ app.user.lastname | capitalize }}</span>
+
+{% endblock %}

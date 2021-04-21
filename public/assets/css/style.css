@@ -1,0 +1,39 @@
+body{
+    background-color: bisque;
+}
+
+header{
+    text-align: center;
+}
+
+.navbar{
+    display: table;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+}
+
+.linkHeader{
+    display: table-cell;
+    text-align: center;
+    box-sizing:border-box;
+    border: black 1px solid;
+    padding: 8px;
+}
+
+a{
+    text-decoration: none;
+    color: chocolate;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.MyAccount{
+
+}
+
+.mySpace{
+    width: 5%;
+}

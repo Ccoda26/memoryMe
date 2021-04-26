@@ -10,16 +10,16 @@
 </head>
 <body>
         <header>
-            <h1>MemoryMe</h1>
-            <h2>L'application qui te permet de retenir tout ce que tu veux</h2>
+            <a href="{{ path('homepage') }}"><h1>MemoryMe</h1></a>
             {% if app.user %}
+                <h2>L'application qui te permet de retenir tout ce que tu veux</h2>
                 <nav>
                     <ul class="navbar">
                         <li class="linkHeader">
                             <a href="{{ path('others_cards_page') }}">Cartes</a>
                         </li>
                         <li class="linkHeader">
-                            <a href="{{ path('cards_page') }}">Mes cartes</a>
+                            <a href="{{ path('Listcards_page') }}">Mes cartes</a>
                         </li>
                         <li class="linkHeader">
                             <a href="{{ path('account_page') }}" class="MyAccount">

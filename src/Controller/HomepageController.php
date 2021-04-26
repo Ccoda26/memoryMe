@@ -11,7 +11,7 @@ class HomepageController extends AbstractController
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/Acceuil", name="homepage")
      */
     public function Homepage(){
 

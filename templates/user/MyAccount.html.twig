@@ -6,4 +6,6 @@
 
     <span> {{ app.user.name | capitalize }} {{ app.user.lastname | capitalize }}</span>
 
+    <a href="{{ path('app_logout') }}">Me déconnecter</a>
+
 {% endblock %}

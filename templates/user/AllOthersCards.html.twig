@@ -2,6 +2,22 @@
 
 {% block body %}
 
-    <h1>Autres cartes</h1>
+    <h2>Autres cartes</h2>
+
+    <h3>Chercher une liste</h3>
+    <textarea name="recherche" id="" cols="50" rows="1" placeholder="Recherche une liste"></textarea>
+
+
+    <a href="{{ path('Addcards_page') }}">
+        <div>
+            <h2>Les avions</h2>
+        </div>
+    </a>
+
+    <a href="{{ path('Addcards_page') }}">
+        <div>
+            <h2>Les voitures</h2>
+        </div>
+    </a>
 
 {% endblock %}

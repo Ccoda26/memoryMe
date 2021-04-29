@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>Autres cartes</h2>
+
+    <h3>Chercher une liste</h3>
+    <textarea name="recherche" id="" cols="50" rows="1" placeholder="Recherche une liste"></textarea>
+
+
+    {% for Alltitle in Alltitles  %}
+        <a href="{{ path('othersQ_page', {'id': Alltitle.id }) }}">
+            <div>
+                <h2>{{ Alltitle.title| capitalize }}</h2>
+            </div>
+        </a>
+    {% endfor  %}
+
+
+
+{% endblock %}

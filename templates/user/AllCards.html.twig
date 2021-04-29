@@ -4,12 +4,15 @@
 
     <h1>Tes listes</h1>
 
-    <a href="{{ path('Makecards_page') }}">Creer une liste</a>
+    <a href="{{ path('NewTitle_page') }}">Creer une liste</a>
 
-    <a href="{{ path('cards_page') }}">
+
+    {% for title in titles  %}
+    <a href="{{ path('mydetail_page', {'id': title.id }) }}">
         <div>
-            <h2>Les arbres</h2>
+            <h2>{{ title.title| capitalize }}</h2>
         </div>
     </a>
+    {% endfor  %}
 
 {% endblock %}

@@ -11,10 +11,14 @@ class HomepageController extends AbstractController
 {
 
     /**
-     * @Route("/Acceuil", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function Homepage(){
-
-      return $this->render('base.html.twig');
+//dd($this->getUser());
+        if($this->getUser()){
+            return $this->render('base.html.twig');
+        }else{
+          return $this->redirectToRoute('app_login');
+        }
     }
 }

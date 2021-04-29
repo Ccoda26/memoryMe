@@ -4,28 +4,42 @@
 namespace App\Controller;
 
 
+use App\Repository\CardsRepository;
+use App\Repository\TitleCardsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CardController extends AbstractController
 {
     /**
-     * @Route("/Listscards", name="Listcards_page")
+     * @Route("/Listscards", name="Listmycards_page")
      */
-    public function AllCards(){
-        return $this->render('user/AllCards.html.twig');
+    public function AllCards(TitleCardsRepository $titleCardsRepository){
+
+        $user =  $this->getUser()->getId();
+        $titles = $titleCardsRepository->findAll(['userList' => $user]);
+
+
+
+        return $this->render('user/AllCards.html.twig',[
+            'titles'=> $titles
+        ]);
     }
 
 
     /**
-     * @Route("/cards", name="cards_page")
+     * @Route("/cards/{id}", name="mydetail_page")
      */
-    public function Cards(){
-        return $this->render('user/MyCards.html.twig');
+    public function Cards(CardsRepository $cardsRepository, $id){
+        $myCard = $cardsRepository->find($id);
+
+        return $this->render('user/MyCards.html.twig',[
+            'mycard'=> $myCard
+        ]);
     }
 
     /**
-     * @Route("/cards/make", name="Makecards_page")
+     * @Route("/cards/make", name="NewTitle_page")
      */
     public function MakeCards(){
 
@@ -38,7 +52,7 @@ class CardController extends AbstractController
 
 
     /**
-     * @Route("/cards/makeown", name="makeown_page")
+     * @Route("/cards/makeown", name="newCards_page")
      */
     public function MakeOwnCards(){
         return $this->render('user/MakeOwn.html.twig');
@@ -50,6 +64,7 @@ class CardController extends AbstractController
      * @Route("/cards/add", name="Addcards_page")
      */
     public function AddCards(){
+
         return $this->render('user/OtherCards.html.twig');
     }
 

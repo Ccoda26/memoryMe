@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -43,6 +45,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=TitleCards::class, mappedBy="userList")
+     */
+    private $titleCards;
+
+    public function __construct()
+    {
+        $this->titleCards = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -145,6 +157,33 @@ class User implements UserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TitleCards[]
+     */
+    public function getTitleCards(): Collection
+    {
+        return $this->titleCards;
+    }
+
+    public function addTitleCard(TitleCards $titleCard): self
+    {
+        if (!$this->titleCards->contains($titleCard)) {
+            $this->titleCards[] = $titleCard;
+            $titleCard->addUserList($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTitleCard(TitleCards $titleCard): self
+    {
+        if ($this->titleCards->removeElement($titleCard)) {
+            $titleCard->removeUserList($this);
+        }
 
         return $this;
     }

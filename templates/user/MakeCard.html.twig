@@ -3,19 +3,19 @@
 {% block body %}
 
     <h1>Inscription</h1>
+    {{ form_start(form) }}
+    nom de la liste
+    {{ form_widget(form.title) }}
 
-    nom de la liste <input type="text" name="" id="">
-
-    <select name="catégorie" id="">
+    <select name="categorie" >
         <option value="">--Choisir une catégorie--</option>
-        <option value="dog">Histoire</option>
-        <option value="cat">Géographie</option>
-        <option value="hamster">Personnage historique</option>
+       {%  for allcategorie in allcategories %}
+        <option value=" {{ allcategorie.name }}"> {{ allcategorie.name }}</option>
+       {% endfor %}
     </select>
 
-    <input type="submit" value="creer">
+    {{ form_row(form.submit) }}
 
-    <a href="{{ path('newCards_page') }}"> ajouter les questions</a>
-
+    {{ form_end(form) }}
 
 {% endblock %}

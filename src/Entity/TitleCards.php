@@ -29,15 +29,16 @@ class TitleCards
      */
     private $userList;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="cardsTitle")
-     */
-    private $cateTitle;
 
     /**
      * @ORM\OneToMany(targetEntity=Cards::class, mappedBy="titleOfCards")
      */
     private $cards;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="titleCards", cascade={"persist"})
+     */
+    private $categoryList;
 
     public function __construct()
     {
@@ -85,18 +86,7 @@ class TitleCards
 
         return $this;
     }
-
-    public function getCateTitle(): ?Category
-    {
-        return $this->cateTitle;
-    }
-
-    public function setCateTitle(?Category $cateTitle): self
-    {
-        $this->cateTitle = $cateTitle;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection|Cards[]
@@ -124,6 +114,18 @@ class TitleCards
                 $card->setTitleOfCards(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategoryList(): ?Category
+    {
+        return $this->categoryList;
+    }
+
+    public function setCategoryList(?Category $categoryList): self
+    {
+        $this->categoryList = $categoryList;
 
         return $this;
     }

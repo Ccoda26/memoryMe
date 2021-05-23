@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {# cherchez a avoir le titre de la liste #}
+    <h1>Liste sur TITRE LISTE</h1>
 
-    <h1>Mes listes</h1>
-
-    <a href="{{ path('Addcards_page') }}">Ajouter des questions</a>
-
-   <h2>{{ mycard.question }}</h2>
+    <a href="{{ path('newCards_page') }}">Ajouter des questions</a>
+    <h2>{{ mycard[0].question | capitalize }}</h2>
 
     <textarea name="response" id="" cols="100" rows="10"></textarea>
-
-    <button>Voir la réponse</button>
+        <select name="categorie" >
+            <option value="">--Choisir une catégorie--</option>
+            <option value="Facile">Facile</option>
+            <option value="Moyen">Moyen</option>
+            <option value="Difficile">Difficile</option>
+        </select>
 
 {% endblock %}

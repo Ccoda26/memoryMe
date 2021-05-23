@@ -25,14 +25,17 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=TitleCards::class, mappedBy="cateTitle")
+     * @ORM\OneToMany(targetEntity=TitleCards::class, mappedBy="categoryList", cascade={"persist"})
      */
-    private $cardsTitle;
+    private $titleCards;
 
     public function __construct()
     {
-        $this->cardsTitle = new ArrayCollection();
+        $this->titleCards = new ArrayCollection();
     }
+
+
+
 
     public function getId(): ?int
     {
@@ -54,30 +57,31 @@ class Category
     /**
      * @return Collection|TitleCards[]
      */
-    public function getCardsTitle(): Collection
+    public function getTitleCards(): Collection
     {
-        return $this->cardsTitle;
+        return $this->titleCards;
     }
 
-    public function addCardsTitle(TitleCards $cardsTitle): self
+    public function addTitleCard(TitleCards $titleCard): self
     {
-        if (!$this->cardsTitle->contains($cardsTitle)) {
-            $this->cardsTitle[] = $cardsTitle;
-            $cardsTitle->setCateTitle($this);
+        if (!$this->titleCards->contains($titleCard)) {
+            $this->titleCards[] = $titleCard;
+            $titleCard->setCategoryList($this);
         }
 
         return $this;
     }
 
-    public function removeCardsTitle(TitleCards $cardsTitle): self
+    public function removeTitleCard(TitleCards $titleCard): self
     {
-        if ($this->cardsTitle->removeElement($cardsTitle)) {
+        if ($this->titleCards->removeElement($titleCard)) {
             // set the owning side to null (unless already changed)
-            if ($cardsTitle->getCateTitle() === $this) {
-                $cardsTitle->setCateTitle(null);
+            if ($titleCard->getCategoryList() === $this) {
+                $titleCard->setCategoryList(null);
             }
         }
 
         return $this;
     }
+
 }

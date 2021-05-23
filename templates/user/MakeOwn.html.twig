@@ -3,14 +3,14 @@
 {% block body %}
 
     <h1>Inscription</h1>
-
-    Question <input type="text" name="" id="">
-    Reponse <input type="text" name="" id="">
-
-
-
-    <input type="submit" value="question suivante">
-    <input type="submit" value="terminer">
+    {{ form_start(form) }}
+    {{ form_row(form.question) }}
+    {{ form_row(form.answer) }}
 
 
+    {{ form_widget(form.submit) }}
+
+    <a href="{{ path('Listmycards_page') }}">Terminer</a>
+
+    {{ form_end(form) }}
 {% endblock %}
